@@ -14,22 +14,19 @@
 
 MagicMirror²는 모듈화되어있는 플러그인 시스템과 어플리케이션 wrapper인 [Electron](http://electron.atom.io/)의 사용에 초점이 맞추어져 있는 스마트 미러 플랫폼입니다. 따라서, 추가적인 웹 서버나 브라우저의 설치가 필요하지 않습니다!
 
+## Magic Mirror 한글 메뉴얼에 대하여
+
+대한민국 성남시에 위치한 가천대학교 소프트웨어학과에 재학중인 양유성 학생(Fallingstar)이 작성하고, 모든 커뮤니티 기여자들과 함께 수정 중인 한글 버전의 Magic Mirror repository입니다.
+원본 repository의 주소는 [이 곳](https://github.com/MichMich/MagicMirror)에서 확인하실 수 있습니다.
+모두가 pull request를 보내실 수 있습니다만, 효율적인 작업을 위해, [기여 가이드라인](#contributing-guidelines)을 참조해주시길 바랍니다.
+
 ## 개요
 
-- [Magic Mirror 한글 메뉴얼에 대하여](#Magic-Mirror-한글-메뉴얼에-대하여)
 - [사용법](#사용법)
 - [설정 방법](#설정-방법)
 - [모듈](#모듈)
 - [커뮤니티](#커뮤니티)
 - [기여 가이드라인](#기여-가이드라인)
-
-## Magic Mirror 한글 메뉴얼에 대하여
-
-### 개요
-대한민국 성남시에 위치한 가천대학교 소프트웨어학과에 재학중인 양유성 학생(Fallingstar)이 작성하고, 모든 커뮤니티 기여자들과 함께 수정 중인 한글 버전의 Magic Mirror repository입니다.
-원본 repository의 주소는 [이 곳](https://github.com/MichMich/MagicMirror)에서 확인하실 수 있습니다.
-모두가 pull request를 보내실 수 있습니다만, 효율적인 작업을 위해, [기여 가이드라인](#contributing-guidelines)을 참조해주시길 바랍니다.
-
 
 ## 사용법
 

@@ -1,0 +1,34 @@
+{
+	/* GENERAL */
+	"LOADING": "로딩중 &hellip;",
+
+	/* CALENDAR */
+	"TODAY": "오늘",
+	"TOMORROW": "내일",
+	"DAYAFTERTOMORROW": "모레",
+	"RUNNING": "종료일 ",
+	"EMPTY": "예정된 일정이 없습니다.",
+
+	/* WEATHER */
+	"N": "북",
+	"NNE": "북북동",
+	"NE": "북동",
+	"ENE": "동북동",
+	"E": "동",
+	"ESE": "동남동",
+	"SE": "남동",
+	"SSE": "남남동",
+	"S": "남",
+	"SSW": "남남서",
+	"SW": "남서",
+	"WSW": "서남서",
+	"W": "서",
+	"WNW": "서북서",
+	"NW": "북서",
+	"NNW": "북북서",
+  
+	/* UPDATE INFO */
+	"UPDATE_NOTIFICATION": "MagicMirror²의 새 버전이 존재합니다.",
+	"UPDATE_NOTIFICATION_MODULE": "모듈 MODULE_NAME의 새 버전이 존재합니다.",
+	"UPDATE_INFO": "현재 설치된 버전은 BRANCH_NAME에서 COMMIT_COUNT뒤에 존재합니다."
+}

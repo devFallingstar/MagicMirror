@@ -26,7 +26,7 @@ MagicMirror²는 모듈화되어있는 플러그인 시스템과 어플리케이
 ## Magic Mirror 한글 메뉴얼에 대하여
 
 ### 개요
-대한민국 성남시에 위치한 가천대학교 소프트웨어학과에 재학중인 양유성 학생(Fallingstar)가 작성하고, 모든 커뮤니티 기여자들과 함께 수정 중인 한글 버전의 Magic Mirror repository입니다.
+대한민국 성남시에 위치한 가천대학교 소프트웨어학과에 재학중인 양유성 학생(Fallingstar)이 작성하고, 모든 커뮤니티 기여자들과 함께 수정 중인 한글 버전의 Magic Mirror repository입니다.
 원본 repository의 주소는 [이 곳](https://github.com/MichMich/MagicMirror)에서 확인하실 수 있습니다.
 모두가 pull request를 보내실 수 있습니다만, 효율적인 작업을 위해, [기여 가이드라인](#contributing-guidelines)을 참조해주시길 바랍니다.
 

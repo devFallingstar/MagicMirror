@@ -62,8 +62,8 @@ curl -sL https://raw.githubusercontent.com/MichMich/MagicMirror/master/installer
 
 다음 링크들은 여러분의 MagicMirror²를 실행시킬 때 필요한 유용한 설정법을 포함하고 있습니다:
 
-- [라즈베리파이 기본 설정](https://github.com/stardung86/MagicMirror/wiki/Configuring-the-Raspberry-Pi)
-- [MagicMirror 자동 실행](https://github.com/stardung86/MagicMirror/wiki/Auto-Starting-MagicMirror)
+- [라즈베리파이 기본 설정](https://github.com/stardung86/MagicMirror/wiki/라즈베리파이-기본-설정)
+- [MagicMirror 자동 실행](https://github.com/stardung86/MagicMirror/wiki/MagicMirror-자동-실행)
 
 ### MagicMirror² 업데이트 하기
 

@@ -1,26 +1,27 @@
-# MagicMirror² Module Development Documentation
+# MagicMirror² 모듈 개발 문서
 
-This document describes the way to develop your own MagicMirror² modules.
+이 문서에는 당신만의 MagicMirror² 모듈을 만드는 방법에 대해서 설명되어 있습니다.
 
-## Module structure
+## 모듈의 구성
 
-All modules are loaded in the `modules` folder. The default modules are grouped together in the `modules/default` folder. Your module should be placed in a subfolder of `modules`. Note that any file or folder your create in the `modules` folder will be ignored by git, allowing you to upgrade the MagicMirror² without the loss of your files.
+모든 모듈은 `modules` 폴더에 저장되어있으며, 기본 모듈은 `modules/default` 폴더에 함께 저장되어있습니다. 또한, 당신이 만든 모듈은 `modules` 폴더 아래의 또 다른 하위 폴더에 저장되어야합니다.
+당신이 `modules` 폴더 속에 만든 모든 파일과 폴더는 새로운 버전의 MagicMirror²를 받을 때 손상될 수 없게, git으로부터 무시된다는 것을 알아두시길 바랍니다.
 
-A module can be placed in one single folder. Or multiple modules can be grouped in a subfolder. Note that name of the module must be unique. Even when a module with a similar name is placed in a different folder, they can't be loaded at the same time.
+하나의 폴더에는 하나의, 혹은 그보다 많은 양의 모듈이 존재할 수 있습니다. 단, 각 모듈의 이름은 중복될 수 없습니다.  비슷한(혹은 같은) 이름의 모듈이 서로 다른 폴더에 존재한다고 하더라도, 해당 모듈을 동시에 로딩할 수 없다는 것을 명심하십시오.
 
-### Files
-- **modulename/modulename.js** - This is your core module script.
-- **modulename/node_helper.js** - This is an optional helper that will be loaded by the node script. The node helper and module script can communicate with each other using an intergrated socket system.
-- **modulename/public** - Any files in this folder can be accesed via the browser on `/modulename/filename.ext`.
-- **modulename/anyfileorfolder** Any other file or folder in the module folder can be used by the core module script. For example: *modulename/css/modulename.css* would be a good path for your additional module styles.
+### 파일 구성
+- **modulename/modulename.js** - 당신이 만든 모듈의 core 모듈 스크립트입니다.
+- **modulename/node_helper.js** - node 스크립트에 의하여 불려질 helper 스크립트입니다. helper 스크립트와 core 스크립트는 별도로 통합된 소켓 시스템에 의해 서로에게 정보를 전달할 수 있습니다. 해당 파일은 필수가 아닙니다(optional).
+- **modulename/public** - 해당 폴더에 있는 모든 파일은 브라우저 내에서 `/modulename/filename.ext`과 같이 접근 가능합니다.
+- **modulename/anyfileorfolder** - 해당 폴더에 있는 모든 파일 및 폴더는 core 모듈 스크립트에서 접근 가능합니다. 예컨대, *modulename/css/modulename.css*는 추가적인 모듈 스타일을 관리하기 위한 좋은 경로가 될 수 있습니다.
 
-## Core module file: modulename.js
-This is the script in which the module will be defined. This script is required in order for the module to be used. In it's most simple form, the core module file must contain:
+## Core 모듈 파일: modulename.js
+모듈의 내용이 정의되는 필수 스크립트 파일입니다. 가장 간단하게, 다음과 같이 작성될 수 있습니다:
 ````javascript
 Module.register("modulename",{});
 ````
-Of course, the above module would not do anything fancy, so it's good to look at one of the simplest modules: **helloworld**:
 
+물론 위의 모듈은 아무런 추가적인 작업을 할 수 없기 때문에, 간단한 모듈 중 하나인 **helloworld**의 core 모듈 스크립트를 살펴보며 기본적인 설명을 덧붙이도록 하겠습니다:
 ````javascript
 //helloworld.js:
 
@@ -39,59 +40,59 @@ Module.register("helloworld",{
 });
 ````
 
-As you can see, the `Module.register()` method takes two arguments: the name of the module and an object with the module properties.
+위 스크립트에서 `Module.register()`는 두 개의 인수를 받고 있습니다: 모듈의 이름과 모듈의 세부적인 설정에 관한 내용이 그것입니다.
 
-### Available module instance properties
-After the module is initialized, the module instance has a few available module properties:
+### 참조 가능한 모듈 객체의 속성 값
+모듈이 초기화되고 나면, 기본적인 모듈 객체의 속성의 값을 참조할 수 있습니다.
 
 ####`this.name`
 **String**
 
-The name of the module.
+모듈의 이름을 나타냅니다.
 
 ####`this.identifier`
 **String**
 
-This is a unique identifier for the module instance.
+해당 모듈 객체의 고유번호(unique identifier)를 나타냅니다.
 
 ####`this.hidden`
 **Boolean**
 
-This represents if the module is currently hidden (faded away).
+해당 모듈의 모습이 숨겨졌는지(사라졌는지)에 대한 Boolean값을 나타냅니다.
 
 ####`this.config`
 **Boolean**
 
-The configuration of the module instance as set in the user's config.js file. This config will also contain the module's defaults if these properties are not over written by the user config.
+사용자의 config.js 파일에 작성해둔 모듈의 속성 값입니다.
+사용자의 config을 통한 추가적인 설정이 없었다면, 모듈이 가질 수 있는 기본 속성을 갖습니다.
 
 ####`this.data`
 **Object**
 
-The data object contains additional metadata about the module instance:
-- `data.classes` - The classes which are added to the module dom wrapper.
-- `data.file` - The filename of the core module file.
-- `data.path` - The path of the module folder.
-- `data.header` - The header added to the module.
-- `data.position` - The position in which the instance will be shown.
-
+모듈 객체에 대한 metadata를 포함하고 있는 data 객체입니다.
+- `data.classes` - 모듈 dom wrapper에 추가된 classes의 정보입니다.
+- `data.file` - core 모듈 파일의 이름입니다.
+- `data.path` - 해당 모듈이 존재하는 폴더의 경로입니다.
+- `data.header` - 모듈에 추가된 header의 정보입니다.
+- `data.position` - 모듈 객체가 표시될 위치의 정보입니다.
 
 ####`defaults: {}`
-Any properties defined in the defaults object, will be merged with the module config as defined in the user's config.js file. This is the best place to set your modules's configuration defaults. Any of the module configuration properties can be accessed using `this.config.propertyName`, but more about that later.
+당신이 만든 모듈의 기본 속성을 작성할 수 있는 객체입니다. 해당 객체에 작성된 속성 값은 사용자의 config.js의 속성 값과 함께 사용될 것입니다. 모든 모듈 속성 값은 `this.config.propertyName`와 같이 참조될 수 있습니다. 이후 해당 부분에 대해 더 자세히 알려드리도록 하겠습니다.
 
 ####'requiresVersion:'
 
-*Introduced in version: 2.1.0.*
+*2.1.0 버전에 추가된 내용입니다.*
 
-A string that defines the minimum version of the MagicMirror framework. If it is set, the system compares the required version with the users version. If the version of the user is out of date, it won't run the module. Make sure to also set this value in the Node helper.
+모듈을 구동시키기에 필요한 MagicMirror 프레임워크의 최소 버전입니다. 만약 따로 정의되어있지 않다면, 시스템이 자동적으로 모듈의 현재 버전과 MagicMirror의 현재 버전을 비교할 것입니다. 만약 모듈의 현재 버전의 업데이트가 필요하다고 판단되면, MagicMirror는 모듈을 구동하지 않을 것입니다. Node helper 스크립트에서 해당 값을 확실하게 작성하시길 바랍니다.
 
-**Note:** Since this check is introduced in version 2.1.0, this check will not be run in older versions. Keep this in mind if you get issue reports on your module.
+**주의:** 해당 속성은 MagicMirror 버전 2.1.0에서 소개되었기 때문에, 그보다 오래된 버전에서는 작동하지 않을 것입니다. issue를 작성하기 전에 꼭 참고하시길 바랍니다.
 
-Example:
+예시:
 ````javascript
 requiresVersion: "2.1.0",
 ````
 
-### Subclassable module methods
+### 내부적으로 사용가능한 모듈 함수
 
 ####`init()`
 This method is called when a module gets instantiated. In most cases you do not need to subclass this method.

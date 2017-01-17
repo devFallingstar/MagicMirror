@@ -3,3 +3,8 @@
 2017년 1월 15일 -
 1. 최상위 readme.md파일의 한글화 완료
 2. modules폴더 내의 module개발 문서의 한글화를 일부분 진행
+3. issue 템플릿의 한글화를 완료
+4. Pull request 템플릿의 한글화를 완료
+5. 최상위 Readme.md파일의 wiki page 하이퍼링크 수정
+5-1. 라즈베리 파이 초기 설정 하이퍼링크
+5-2. MagicMirror 자동 실행 설정 하이퍼링크

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# This is an installer script for MagicMirror2. It works well enough
-# that it can detect if you have Node installed, run a binary script
-# and then download and run MagicMirror2.
+# 해당 파일은 MagicMirror2 설치 스크립트 입니다.
+# Node가 설치되어있는 것을 자동으로 확인한 뒤, 
+# 바이너리 스크립트를 통해 MagicMirror2를 다운로드하고 자동으로 설치할 것입니다.
 
 echo -e "\e[0m"
 echo '$$\      $$\                     $$\           $$\      $$\ $$\                                          $$$$$$\'
@@ -18,13 +18,13 @@ echo '                       \$$$$$$  |'
 echo '                        \______/'
 echo -e "\e[0m"
 
-# Define the tested version of Node.js.
+# 사용할 Node.js의 버전을 정의합니다.
 NODE_TESTED="v5.1.0"
 
-#Determine which Pi is running.
+# 어떤 라즈베리 파이가 사용되는지 확인합니다.
 ARM=$(uname -m) 
 
-#Check the Raspberry Pi version.
+# 라즈베리 파이의 버전을 확인합니다.
 if [ "$ARM" != "armv7l" ]; then
 	echo -e "\e[91mSorry, your Raspberry Pi is not supported."
 	echo -e "\e[91mPlease run MagicMirror on a Raspberry Pi 2 or 3."
@@ -32,15 +32,15 @@ if [ "$ARM" != "armv7l" ]; then
 	exit;
 fi
 
-#define helper methods.
+# 원활한 실행을 위해 도움을 주는 테스트 함수를 정의합니다.
 function version_gt() { test "$(echo "$@" | tr " " "\n" | sort -V | head -n 1)" != "$1"; }
 function command_exists () { type "$1" &> /dev/null ;}
 
-# Installing helper tools
+# 설치를 위한 추가 프로그램을 설치합니다.
 echo -e "\e[96mInstalling helper tools ...\e[90m"
 sudo apt-get install curl wget git build-essential unzip || exit
 
-# Check if we need to install or upgrade Node.js.
+# Node.js에 대한 업그레이드 혹은 설치가 필요한지 확인합니다
 echo -e "\e[96mCheck current Node installation ...\e[0m"
 NODE_INSTALL=false
 if command_exists node; then
@@ -69,7 +69,7 @@ else
 	NODE_INSTALL=true
 fi
 
-# Install or upgrade node if necessary.
+# Node.js에 대한 업그레이드 혹은 설치가 필요하다면 진행합니다.
 if $NODE_INSTALL; then
 	
 	echo -e "\e[96mInstalling Node.js ...\e[90m"
@@ -84,7 +84,7 @@ if $NODE_INSTALL; then
 	echo -e "\e[92mNode.js installation Done!\e[0m"
 fi
 
-#Install magic mirror
+# magic mirror를 설치합니다.
 cd ~
 if [ -d "$HOME/MagicMirror" ] ; then
 	echo -e "\e[93mIt seems like MagicMirror is already installed."
@@ -113,7 +113,7 @@ else
 	exit;
 fi
 
-# Check if plymouth is installed (default with PIXEL desktop environment), then install custom splashscreen.
+# plymouth의 설치 유무를 확인하고(기본적으로 PIXEL desktop 환경으로 이루어져있습니다.), custom splashscreen을 설치합니다.
 echo -e "\e[96mCheck plymouth installation ...\e[0m"
 if command_exists plymouth; then
 	THEME_DIR="/usr/share/plymouth/themes"

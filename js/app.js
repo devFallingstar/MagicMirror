@@ -10,11 +10,11 @@ var Server = require(__dirname + "/server.js");
 var defaultModules = require(__dirname + "/../modules/default/defaultmodules.js");
 var path = require("path");
 
-// Get version number.
+//  버전 넘버를 가져옵니다.
 global.version = JSON.parse(fs.readFileSync("package.json", "utf8")).version;
 console.log("Starting MagicMirror: v" + global.version);
 
-// global absolute root path
+// 전역 절대 경로
 global.root_path = path.resolve(__dirname + "/../");
 
 // The next part is here to prevent a major exception when there

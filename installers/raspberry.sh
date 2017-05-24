@@ -52,8 +52,8 @@ if command_exists node; then
 		echo -e "\e[96mNode should be upgraded.\e[0m"
 		NODE_INSTALL=true
 
-		#Check if a node process is currenlty running.
-		#If so abort installation.
+		# Check if a node process is currenlty running.
+		# If so abort installation.
 		if pgrep "node" > /dev/null; then
 			echo -e "\e[91mA Node process is currently running. Can't upgrade."
 			echo "Please quit all Node processes and restart the installer."
@@ -74,9 +74,9 @@ if $NODE_INSTALL; then
 	
 	echo -e "\e[96mInstalling Node.js ...\e[90m"
 
-	#Fetch the latest version of Node.js from the selected branch
-	#The NODE_STABLE_BRANCH variable will need to be manually adjusted when a new branch is released. (e.g. 7.x)
-	#Only tested (stable) versions are recommended as newer versions could break MagicMirror.
+	# Fetch the latest version of Node.js from the selected branch
+	# The NODE_STABLE_BRANCH variable will need to be manually adjusted when a new branch is released. (e.g. 7.x)
+	# Only tested (stable) versions are recommended as newer versions could break MagicMirror.
 	
 	NODE_STABLE_BRANCH="6.x"
 	curl -sL https://deb.nodesource.com/setup_$NODE_STABLE_BRANCH | sudo -E bash -
@@ -84,7 +84,7 @@ if $NODE_INSTALL; then
 	echo -e "\e[92mNode.js installation Done!\e[0m"
 fi
 
-# magic mirror를 설치합니다.
+# MagicMirror를 설치합니다.
 cd ~
 if [ -d "$HOME/MagicMirror" ] ; then
 	echo -e "\e[93mIt seems like MagicMirror is already installed."
@@ -113,6 +113,9 @@ else
 	exit;
 fi
 
+# MagicMirror를 시작하기 위해서 샘플 config파일을 사용할 수 있습니다.
+cp config/config.js.sample config/config.js
+
 # plymouth의 설치 유무를 확인하고(기본적으로 PIXEL desktop 환경으로 이루어져있습니다.), custom splashscreen을 설치합니다.
 echo -e "\e[96mCheck plymouth installation ...\e[0m"
 if command_exists plymouth; then
@@ -139,6 +142,16 @@ if command_exists plymouth; then
 	fi
 else
 	echo -e "\e[93mplymouth is not installed.\e[0m";
+fi
+
+# Use pm2 control like a service MagicMirror
+read -p "Do you want use pm2 for auto starting of your MagicMirror (y/n)?" choice
+if [[ $choice =~ ^[Yy]$ ]]
+then
+    sudo npm install -g pm2
+    sudo su -c "env PATH=$PATH:/usr/bin pm2 startup linux -u pi --hp /home/pi"
+    pm2 start ~/MagicMirror/installers/pm2_MagicMirror.json
+    pm2 save
 fi
 
 echo " "

@@ -37,7 +37,7 @@ MagicMirror²에 사용된 어플리케이션 wrapper인 Electron은 라즈베�
 
 MagicMirror²를 설치할 라즈베리 파이에서 다음 명령어를 실행합니다:
 ````
-curl -sL https://raw.githubusercontent.com/MichMich/MagicMirror/master/installers/raspberry.sh | bash
+bash -c "$(curl -sL https://raw.githubusercontent.com/MichMich/MagicMirror/master/installers/raspberry.sh)"
 ````
 
 ### 수동 설치 방법
